@@ -1,0 +1,140 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "authentication": "headerAuth",
+        "path": "gmail"
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpTrigger",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "c5a638fd-5f7f-4449-a536-266d5eec8e1d",
+      "name": "MCP Server Trigger",
+      "webhookId": "0e2705dc-a19a-499d-92f0-304619e3aeac",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "V0bTOidnn6SBCbCl",
+          "name": "gmail-mcp"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Send a message in Gmail",
+        "sendTo": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('To', `input the email recipent here`, 'string') }}",
+        "subject": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Subject', `input the email subject here`, 'string') }}",
+        "emailType": "text",
+        "message": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message', `input the email content here`, 'string') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        -48,
+        208
+      ],
+      "id": "8b095bfd-f704-4b7a-90e0-57b4c731c0c3",
+      "name": "send_a_message",
+      "webhookId": "0b77d281-f459-4a43-a052-d4497248547c",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "9Tdw1suKS6vDrcMZ",
+          "name": "Gmail Ardian Sandbox"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Get many messages in Gmail",
+        "operation": "getAll",
+        "limit": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Limit', ``, 'number') }}",
+        "simple": false,
+        "filters": {},
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        144,
+        208
+      ],
+      "id": "25d4138e-7a83-4add-b97c-0c305625dd06",
+      "name": "read_gmail_messages",
+      "webhookId": "da9533e0-3bc7-4538-af20-6800fc12f977",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "9Tdw1suKS6vDrcMZ",
+          "name": "Gmail Ardian Sandbox"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Mark a message as read in Gmail",
+        "operation": "markAsRead",
+        "messageId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_ID', ``, 'string') }}"
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        352,
+        208
+      ],
+      "id": "a6f5475b-d3bb-4268-979b-e011150be45b",
+      "name": "mark_a_message_as_read",
+      "webhookId": "0e86d2b7-9dff-4d0b-8d79-b945e9bbfdf3",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "9Tdw1suKS6vDrcMZ",
+          "name": "Gmail Ardian Sandbox"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "send_a_message": {
+      "ai_tool": [
+        [
+          {
+            "node": "MCP Server Trigger",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "read_gmail_messages": {
+      "ai_tool": [
+        [
+          {
+            "node": "MCP Server Trigger",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "mark_a_message_as_read": {
+      "ai_tool": [
+        [
+          {
+            "node": "MCP Server Trigger",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "e2389c86909e79af182ca19dbdad388af26091714d316351b9653ed6079dafc3"
+  }
+}Ū
